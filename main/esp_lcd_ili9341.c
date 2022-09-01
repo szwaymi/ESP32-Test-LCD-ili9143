@@ -220,8 +220,7 @@ static esp_err_t panel_ili9341_draw_bitmap(esp_lcd_panel_t *panel, int x_start, 
         (y_end - 1) & 0xFF,
     }, 4);
     // transfer frame buffer
-    size_t len = (x_end - x_start) * (y_end - y_start) * ili9341->bits_per_pixel / 8;
-    //printf("Len = %d %d\n", len);
+    size_t len = (x_end - x_start) * (y_end - y_start) * (ili9341->bits_per_pixel + 7) / 8;
     esp_lcd_panel_io_tx_color(io, LCD_CMD_RAMWR, color_data, len);
     
    printf("Draw\n");
